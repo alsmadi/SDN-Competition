@@ -1,0 +1,27 @@
+
+Frame number...2...
+Arp:  ******* Arp offset=14 (0xE) length=28 
+Arp: 
+Arp:                             hardwareType = 1 [ETHERNET]
+Arp:                             protocolType = 0x800 (2048) [IP]
+Arp:                            hardware size = 6 bytes
+Arp:                            protocol size = 4 bytes
+Arp:                                  op code = 1 [REQUEST]
+Arp:                               sender MAC = 90:e2:ba:89:3c:53
+Arp:                                sender IP = 192.168.1.2
+Arp:                               target MAC = 00:00:00:00:00:00
+Arp:                                target IP = 192.168.1.1
+Arp: 1ETHERNETETHERNET62048IP32
+Frame number...3...
+Arp:  ******* Arp offset=14 (0xE) length=28 
+Arp: 
+Arp:                             hardwareType = 1 [ETHERNET]
+Arp:                             protocolType = 0x800 (2048) [IP]
+Arp:                            hardware size = 6 bytes
+Arp:                            protocol size = 4 bytes
+Arp:                                  op code = 2 [REPLY]
+Arp:                               sender MAC = 00:10:18:65:4b:53
+Arp:                                sender IP = 192.168.1.1
+Arp:                               target MAC = 90:e2:ba:89:3c:53
+Arp:                                target IP = 192.168.1.2
+Arp: 1ETHERNETETHERNET62048IP32
