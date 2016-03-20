@@ -154,9 +154,14 @@ public class PcapReader_Main{
               OutputStream os33=null;
               OutputStream os4=null;
               OutputStream os5=null;
+               OutputStream os6=null;
+               OutputStream os7=null;
+               OutputStream os8=null;
               
 
-            try(BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file1),"UTF-8"))){
+            try{
+              BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file1),"UTF-8"));
+              
 
     String line = null;
     os = new FileOutputStream("out2.txt");
@@ -167,6 +172,9 @@ public class PcapReader_Main{
     os2 = new FileOutputStream("ports.txt");
     os4 = new FileOutputStream("hosts.txt");
     os5= new FileOutputStream("openvswitch.txt");
+     os6= new FileOutputStream("openflow.txt");
+     os7= new FileOutputStream("ovs-ofctl.txt");
+     os8= new FileOutputStream("ovs-vsctl.txt");
 
 //    os1 = new FileOutputStream("controller.txt");
   //  os2 = new FileOutputStream("ports.txt");
@@ -191,11 +199,20 @@ public class PcapReader_Main{
             os2.write('\n');
             os2.flush(); 
             }
-
+            if(line.contains("ovs-ofctl")){
+                 os7.write(bytes);
+            os7.write('\n');
+            os7.flush(); 
+            }
             if(line.contains("host")){
                  os4.write(bytes);
             os4.write('\n');
             os4.flush(); 
+            }
+             if(line.contains("openflow")){
+                 os6.write(bytes);
+            os6.write('\n');
+            os6.flush(); 
             }
              if(line.contains("openvswitch")){
                  os5.write(bytes);
@@ -208,7 +225,10 @@ public class PcapReader_Main{
             os3.write('\n');
             os3.flush(); 
             }
-
+            if(line.contains("ovs-vsctl")){
+                 os8.write(bytes);
+            os8.write('\n');
+            os8.flush();  }
              if(line.contains("tcp:192.168.1.1")){
                  os33.write(bytes);
             os33.write('\n');
@@ -226,6 +246,9 @@ public class PcapReader_Main{
      os3.close();
       os33.close();
        os5.close();
+        os6.close();
+      os7.close();
+      os8.close();
 
 //    writeToFile("Memory_Dump.txt", sb);
     
@@ -240,7 +263,9 @@ public class PcapReader_Main{
      os3.close();
       os33.close();
        os5.close();
-
+      os6.close();
+      os7.close();
+      os8.close();
             }
             catch(Exception ex){
                 
@@ -257,7 +282,9 @@ catch(IOException e){
      os3.close();
       os33.close();
        os5.close();
-
+       os6.close();
+       os7.close();
+       os8.close();
             }
             catch(Exception ex){
                 
