@@ -1,0 +1,62 @@
+				Issues
+One strange issue I found so far is in Frame 3
+
+Frame number...3...
+Eth:  ******* Ethernet - "Ethernet" - offset=0 (0x0) length=14 protocol suite=LAN
+Eth: 
+Eth:                              destination = 90:e2:ba:89:3c:53
+Eth:                    .... ..0. .... .... = [2] LG bit
+Eth:                    .... ...0 .... .... = [0] IG bit
+Eth:                                   source = 00:10:18:65:4b:53
+Eth:                    .... ..0. .... .... = [2] LG bit
+Eth:                    .... ...0 .... .... = [0] IG bit
+Eth:                                     type = 0x806 (2054)
+Eth: 033602[B@3796751b[B@67b64c4502[B@3796751b[B@67b64c45
+
+its an ARP message and yet destination is a specific address not [ff:ff:ff:ff:ff:ff]
+
+I thought always destination in ARP should be like that [ broadcasting ]
+
+so address 00:10:18:65:4b:53 in Frame 2 sent a normal ARP, but some how strange ARP in Frame 3
+
+This is Frame 2
+Frame number...2...
+Eth:  ******* Ethernet - "Ethernet" - offset=0 (0x0) length=14 protocol suite=LAN
+Eth: 
+Eth:                              destination = ff:ff:ff:ff:ff:ff
+Eth:                    .... ..0. .... .... = [2] LG bit
+Eth:                    .... ...0 .... .... = [2] IG bit
+Eth:                                   source = 90:e2:ba:89:3c:53
+Eth:                    .... ..0. .... .... = [2] LG bit
+Eth:                    .... ...0 .... .... = [2] IG bit
+Eth:                                     type = 0x806 (2054)
+Eth: 048022[B@71be98f5[B@6fadae5d22[B@71be98f5[B@6fadae5d
+Frame number...1... ... not a TCP packet
+Frame number...2... ... not a TCP packet
+Frame number...3... ... not a TCP packet
+Frame number...4...<192.168.1.2,48684> ==> <192.168.1.1,6633> first SYN, ISN=42347239
+Frame number...5...<192.168.1.1,6633> ==> <192.168.1.2,48684> SYN/ACK, ISN=1740973611
+ISNs should match
+   1) A --> B  SYN my sequence number is X
+    2) A <-- B  ACK your sequence number is X
+    3) A <-- B  SYN my sequence number is Y
+    4) A --> B  ACK your sequence number is Y
+---------------------------------\
+
+Usually response ISN sequence number should be the sent one plus one [ which is not the case above ]
+Frame number...4...<192.168.1.2,48684> ==> <192.168.1.1,6633> first SYN, ISN=42347239
+Frame number...5...<192.168.1.1,6633> ==> <192.168.1.2,48684> SYN/ACK, ISN=1740973611
+--------------------- a known vulnerability
+https://www.cvedetails.com/vulnerability-list/vendor_id-12098/Openvswitch.html
+Openvswitch : Security Vulnerabilities
+CVSS Scores Greater Than: 0   1   2   3   4   5   6   7   8   9  
+Sort Results By : CVE Number Descending   CVE Number Ascending   CVSS Score Descending   Number Of Exploits Descending
+Copy Results Download Results Select Table
+#	CVE ID	CWE ID	# of Exploits	Vulnerability Type(s)	Publish Date	Update Date	Score	Gained Access Level	Access	Complexity	Authentication	Conf.	Integ.	Avail.
+1	CVE-2012-3449
+264
+		2012-08-07	2012-08-08	3.6	None	Local	Low	Not required	None	Partial	Partial
+Open vSwitch 1.4.2 uses world writable permissions for (1) /var/lib/openvswitch/pki/controllerca/incoming/ and (2) /var/lib/openvswitch/pki/switchca/incoming/, which allows local users to delete and overwrite arbitrary files.
+Total number of vulnerabilities : 1   Page : 1 (This Page)
+
+------------------------
