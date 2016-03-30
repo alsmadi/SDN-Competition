@@ -158,6 +158,7 @@ public class PcapReader_Main{
                OutputStream os7=null;
                OutputStream os8=null;
                OutputStream os9=null;
+               OutputStream os10=null;
               
 
             try{
@@ -178,6 +179,7 @@ public class PcapReader_Main{
      os7= new FileOutputStream("ovs-ofctl.txt");
      os8= new FileOutputStream("ovs-vsctl.txt");
      os9= new FileOutputStream("OFP-messages.txt");
+     os10= new FileOutputStream("ofp_port.txt");
 //    os1 = new FileOutputStream("controller.txt");
   //  os2 = new FileOutputStream("ports.txt");
 
@@ -205,6 +207,11 @@ public class PcapReader_Main{
                  os2.write(bytes);
             os2.write('\n');
             os2.flush(); 
+            }
+            if(line.contains("ofp_port")){
+                 os10.write(bytes);
+            os10.write('\n');
+            os10.flush(); 
             }
             if(line.contains("ovs-ofctl")){
                  os7.write(bytes);
@@ -257,6 +264,7 @@ public class PcapReader_Main{
       os7.close();
       os8.close();
       os9.close();
+      os10.close();
 
 //    writeToFile("Memory_Dump.txt", sb);
     
@@ -275,6 +283,7 @@ public class PcapReader_Main{
       os7.close();
       os8.close();
       os9.close();
+      os10.close();
             }
             catch(Exception ex){
                 
@@ -295,6 +304,7 @@ catch(IOException e){
        os7.close();
        os8.close();
        os9.close();
+       os10.close();
             }
             catch(Exception ex){
                 
