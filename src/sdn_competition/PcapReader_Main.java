@@ -157,6 +157,7 @@ public class PcapReader_Main{
                OutputStream os6=null;
                OutputStream os7=null;
                OutputStream os8=null;
+               OutputStream os9=null;
               
 
             try{
@@ -164,7 +165,8 @@ public class PcapReader_Main{
               
 
     String line = null;
-    os = new FileOutputStream("out2.txt");
+   // os = new FileOutputStream("out2.txt");
+     os = new FileOutputStream("C:\\Users\\ialsmadi\\Desktop\\Project\\out2.txt");
     os3 = new FileOutputStream("controller1.txt");
 
     os33 = new FileOutputStream("controller2.txt");
@@ -175,7 +177,7 @@ public class PcapReader_Main{
      os6= new FileOutputStream("openflow.txt");
      os7= new FileOutputStream("ovs-ofctl.txt");
      os8= new FileOutputStream("ovs-vsctl.txt");
-
+     os9= new FileOutputStream("OFP-messages.txt");
 //    os1 = new FileOutputStream("controller.txt");
   //  os2 = new FileOutputStream("ports.txt");
 
@@ -193,6 +195,11 @@ public class PcapReader_Main{
                  os1.write(bytes);
             os1.write('\n');
             os1.flush(); 
+            }
+            if(line.contains("ofp_header") || line.contains("OFPT_")){
+                 os9.write(bytes);
+            os9.write('\n');
+            os9.flush(); 
             }
             if(line.contains("port")){
                  os2.write(bytes);
@@ -249,6 +256,7 @@ public class PcapReader_Main{
         os6.close();
       os7.close();
       os8.close();
+      os9.close();
 
 //    writeToFile("Memory_Dump.txt", sb);
     
@@ -266,6 +274,7 @@ public class PcapReader_Main{
       os6.close();
       os7.close();
       os8.close();
+      os9.close();
             }
             catch(Exception ex){
                 
@@ -285,6 +294,7 @@ catch(IOException e){
        os6.close();
        os7.close();
        os8.close();
+       os9.close();
             }
             catch(Exception ex){
                 
@@ -316,7 +326,8 @@ catch(IOException e){
         }
 	public static void main(String[] args)
 	{
-            readBinary1("ram.raw");
+    //        readBinary1("ram.raw");
+             readBinary1("C:\\Users\\ialsmadi\\Desktop\\Project\\ram.raw");
             process();
             final StringBuilder SB = new StringBuilder();
             

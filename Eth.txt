@@ -42,7 +42,7 @@ Eth:                                   source = 90:e2:ba:89:3c:53
 Eth:                    .... ..0. .... .... = [0] LG bit
 Eth:                    .... ...0 .... .... = [0] IG bit
 Eth:                                     type = 0x800 (2048) [ip version 4]
-Eth: 059200[B@506e6d5e[B@96532d600[B@506e6d5e[B@96532d6
+Eth: 059200[B@2acf57e3[B@506e6d5e00[B@2acf57e3[B@506e6d5e
 Frame number...5...
 Eth:  ******* Ethernet - "Ethernet" - offset=0 (0x0) length=14 protocol suite=LAN
 Eth: 
@@ -53,7 +53,7 @@ Eth:                                   source = 00:10:18:65:4b:53
 Eth:                    .... ..0. .... .... = [2] LG bit
 Eth:                    .... ...0 .... .... = [0] IG bit
 Eth:                                     type = 0x800 (2048) [ip version 4]
-Eth: 059202[B@6442b0a6[B@60f82f9802[B@6442b0a6[B@60f82f98
+Eth: 059202[B@4411d970[B@6442b0a602[B@4411d970[B@6442b0a6
 Frame number...6...
 Eth:  ******* Ethernet - "Ethernet" - offset=0 (0x0) length=14 protocol suite=LAN
 Eth: 
