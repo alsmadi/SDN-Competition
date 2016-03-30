@@ -159,6 +159,7 @@ public class PcapReader_Main{
                OutputStream os8=null;
                OutputStream os9=null;
                OutputStream os10=null;
+               OutputStream os11=null;
               
 
             try{
@@ -180,6 +181,9 @@ public class PcapReader_Main{
      os8= new FileOutputStream("ovs-vsctl.txt");
      os9= new FileOutputStream("OFP-messages.txt");
      os10= new FileOutputStream("ofp_port.txt");
+     os11=new FileOutputStream("OFP_actions");
+     
+    
 //    os1 = new FileOutputStream("controller.txt");
   //  os2 = new FileOutputStream("ports.txt");
 
@@ -198,7 +202,13 @@ public class PcapReader_Main{
             os1.write('\n');
             os1.flush(); 
             }
-            if(line.contains("ofp_header") || line.contains("OFPT_")){
+            
+            if(line.contains("OFPAT_")){
+                 os11.write(bytes);
+            os11.write('\n');
+            os11.flush(); 
+            }
+            if(line.contains("ofp_header") || line.contains("OFPT")){
                  os9.write(bytes);
             os9.write('\n');
             os9.flush(); 
@@ -257,15 +267,15 @@ public class PcapReader_Main{
     os1.close();
     os2.close();
     os4.close();
-     os3.close();
-      os33.close();
-       os5.close();
-        os6.close();
-      os7.close();
-      os8.close();
-      os9.close();
-      os10.close();
-
+    os3.close();
+    os33.close();
+    os5.close();
+    os6.close();
+    os7.close();
+    os8.close();
+    os9.close();
+    os10.close();
+    os11.close();
 //    writeToFile("Memory_Dump.txt", sb);
     
         } catch( FileNotFoundException e2 ) {
@@ -284,6 +294,7 @@ public class PcapReader_Main{
       os8.close();
       os9.close();
       os10.close();
+      os11.close();
             }
             catch(Exception ex){
                 
@@ -305,6 +316,7 @@ catch(IOException e){
        os8.close();
        os9.close();
        os10.close();
+       os11.close();
             }
             catch(Exception ex){
                 
